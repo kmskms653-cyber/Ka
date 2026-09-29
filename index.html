@@ -103,7 +103,7 @@ const P=e=>{const b=c.getBoundingClientRect();return[e.clientX-b.left,e.clientY-
 c.onpointerdown=e=>{dr=1;c.setPointerCapture(e.pointerId);x.beginPath();x.moveTo(...P(e))};c.onpointermove=e=>{if(dr){x.lineTo(...P(e));x.stroke()}};c.onpointerup=()=>dr=0}
 function clr(){r()}
 
-const sb=supabase.createClient('https://fjmgivtkcvtmcghpccvm.supabase.co','sb_publishable_EzpqyO3sCI95sI-vXpqUOQ_9j2jngn3');
+const sb=supabase.createClient('https://fjmgivtkcvtmcghpccvm.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqbWdpdnRrY3Z0bWNnaHBjY3ZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA2MjQ1ODEsImV4cCI6MjEwNjIwMDU4MX0.6aHRzTy3qes6dF9rrgSrhcFZymBqgvBCJwBEkAhGIo8');
 let S={cfg:{m:30,y:299,bank:'',name:'',iban:''},tree:[],me:null,v:'home',si:0,ci:0,tab:'r',reg:0,plan:'m',rc:null,rcb:null,rurl:null,W:null,cur:[],adm:{},busy:1,msg:''};
 const ok=()=>S.me&&(S.me.admin||S.me.st=='active');
 const go=(v,a,b)=>{S.v=v;if(a!=null)S.si=a;if(b!=null)S.ci=b;S.W=null;if(v=='pay')refresh();else if(v=='admin')admLoad();else r();scrollTo(0,0)};
