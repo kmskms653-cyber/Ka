@@ -38,7 +38,7 @@ table{width:100%;border-collapse:collapse;text-align:center}td,th{border:1px sol
 @keyframes fl{50%{transform:translateY(-4px) rotate(-4deg)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .pi{font:inherit;background:linear-gradient(135deg,#ff7a59,#ffb347);color:#fff;border:0;border-radius:20px;padding:2px 12px;cursor:pointer;box-shadow:0 2px 6px #0003}
-</style></head><body><div id="app"></div>
+</style><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#6c4cf1"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="التأسيس"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></head><body><div id="app"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.95.3/dist/umd/supabase.js"></script>
 <script>
 
@@ -156,6 +156,6 @@ async function stt(id,s){const o={status:s};if(s=='none')o.receipt_path=null;con
 async function adm(id,v){const q=await sb.from('profiles').update({is_admin:v}).eq('id',id);if(q.error)alert(q.error.message);admLoad()}
 async function saveTree(silent){try{const t=silent?S.tree:JSON.parse(document.getElementById('tj').value);const q=await sb.from('content').upsert({id:1,tree:t});if(q.error)throw q.error;S.tree=t;alert('تم الحفظ');if(silent)r()}catch(e){alert('تعذر الحفظ: '+(e.message||'JSON غير صالح'))}}
 async function saveCfg(){const c={};['m','y','bank','name','iban'].forEach(k=>c[k]=document.getElementById('c_'+k).value);const q=await sb.from('settings').upsert({id:1,cfg:c});if(q.error)return alert(q.error.message);S.cfg=c;alert('تم الحفظ')}
-r();refresh();
+r();refresh();if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 
 </script></body></html>
