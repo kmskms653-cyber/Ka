@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>منصة التأسيس والقدرات</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff7ef;--c:#fff;--t:#2a1f4d;--p:#6c4cf1;--p2:#ece7ff;--ok:#2e9e5b;--bad:#d64545;--m:#6b7a90;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#150f2b;--c:#221a42;--t:#f1ecff;--p:#a68bff;--p2:#33296a;--m:#b3a9d6}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(circle at 90% -5%,#ff7a5933,transparent 40%),radial-gradient(circle at 0 25%,#4dc9f633,transparent 40%),var(--bg);background-attachment:fixed;color:var(--t);font-family:Tajawal,system-ui,sans-serif;line-height:1.7}
+#app{max-width:640px;margin:auto;padding:12px}
+.card{background:var(--c);border-radius:16px;padding:14px;margin:10px 0;box-shadow:0 1px 4px #0002}
+.big{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:700;cursor:pointer;width:100%;border:0;color:var(--t);text-align:right}
+.big i{font-style:normal;background:var(--p2);color:var(--p);border-radius:12px;min-width:48px;height:48px;display:grid;place-items:center;font-size:24px}
+button{font:inherit}.b{background:var(--p);color:#fff;border:0;border-radius:12px;padding:10px 16px;cursor:pointer}
+.b.g{background:var(--p2);color:var(--p)}.b.r{background:var(--bad)}.b.o{background:var(--ok)}
+input,textarea,select{width:100%;font:inherit;padding:10px;border-radius:10px;border:1px solid var(--m);background:var(--c);color:var(--t);margin:4px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:8px}
+.grid button{background:var(--p2);color:var(--t);border:0;border-radius:12px;padding:12px 4px;font-size:22px;cursor:pointer}
+.grid button.on{background:var(--p);color:#fff}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+h2,h3{margin:8px 0}.m{color:var(--m);font-size:14px}
+.o1{display:block;width:100%;text-align:right;margin:4px 0;padding:10px;border-radius:10px;border:1px solid var(--m);background:var(--c);color:var(--t);cursor:pointer}
+.o1.sel{border-color:var(--p);background:var(--p2)}.o1.ok{background:#2e9e5b33;border-color:var(--ok)}.o1.bad{background:#d6454533;border-color:var(--bad)}
+canvas{width:100%;height:220px;background:var(--c);border:2px dashed var(--p);border-radius:14px;touch-action:none}
+img.rc{max-width:100%;border-radius:10px}.tabs{display:flex;gap:6px;flex-wrap:wrap}
+table{width:100%;border-collapse:collapse;text-align:center}td,th{border:1px solid var(--m);padding:4px}
+
+.top h2{background:linear-gradient(90deg,#ff7a59,#6c4cf1);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sc,.cc{display:flex;align-items:center;gap:12px;width:100%;border:0;border-radius:20px;padding:16px;margin:10px 0;text-align:right;color:#fff;cursor:pointer;box-shadow:0 6px 16px #0003;transition:transform .15s}
+.sc:active,.cc:active{transform:scale(.97)}
+.sc>span:nth-child(2),.cc>span:nth-child(2){flex:1;display:flex;flex-direction:column}
+.sc b{font-size:20px}.sc small{opacity:.92;font-size:13px}.sc em{font-style:normal;font-size:28px}
+.ei{font-size:36px;background:#fff3;border-radius:16px;width:60px;height:60px;display:grid;place-items:center;animation:fl 3s ease-in-out infinite}
+.hero{display:flex;align-items:center;gap:12px;color:#fff;border-radius:20px;padding:16px;margin:10px 0}.hero b{font-size:21px;display:block}.hero small{opacity:.92}
+.cc{background:var(--c);color:var(--t);box-shadow:0 3px 10px #0002}.cc b{font-size:18px}.cc small{color:var(--m);font-size:13px}.cc em{font-style:normal}
+.ci{font-size:26px;width:52px;height:52px;border-radius:16px;display:grid;place-items:center;color:#fff}
+.grid button:nth-child(4n+1){background:#ff7a5933}.grid button:nth-child(4n+2){background:#4dc9f633}.grid button:nth-child(4n+3){background:#00b89433}.grid button:nth-child(4n){background:#ffb02e33}
+.grid button.on{background:var(--p)!important;color:#fff;transform:scale(1.06)}
+@keyframes fl{50%{transform:translateY(-4px) rotate(-4deg)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.pi{font:inherit;background:linear-gradient(135deg,#ff7a59,#ffb347);color:#fff;border:0;border-radius:20px;padding:2px 12px;cursor:pointer;box-shadow:0 2px 6px #0003}
+</style></head><body><div id="app"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+
+const ld=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){alert('المساحة ممتلئة')}};
+const H=async s=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(b=>b.toString(16).padStart(2,'0')).join('');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const L=(s,l)=>[...s].map(c=>({s:c,say:c,l}));
+const W=(a,l)=>a.map(w=>({s:w,say:w,l}));
+const NA=['واحد','اثنان','ثلاثة','أربعة','خمسة','ستة','سبعة','ثمانية','تسعة','عشرة'];
+const Q=(q,o,a,e)=>({q,o,a,e});
+function rng(s){return()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const TB=[Q('ما عاصمة المملكة العربية السعودية؟',['جدة','الرياض','الدمام','مكة'],1,'عاصمة المملكة هي الرياض.'),Q('الماء يتكون من:',['H2O','CO2','O2','NaCl'],0,'جزيء الماء: ذرتا هيدروجين وذرة أكسجين.'),Q('عدد أضلاع المسدس:',['5','6','7','8'],1,'المسدس له ستة أضلاع.'),Q('أقرب كوكب إلى الشمس:',['الزهرة','الأرض','عطارد','المريخ'],2,'عطارد هو الأقرب للشمس.'),Q('ناتج 12 × 12:',['122','144','124','154'],1,'12×12=144.'),Q('الغاز الذي تحتاجه النباتات في البناء الضوئي:',['الأكسجين','النيتروجين','ثاني أكسيد الكربون','الهيليوم'],2,'النبات يمتص CO2 ويطلق الأكسجين.')];
+function gen(k,n){if(k=='t')return Array.from({length:20},(_,i)=>TB[(i+n)%TB.length]);
+const r=rng(n*7919+1),R=m=>Math.floor(r()*m),qs=[];
+for(let i=0;i<20;i++){let q,a,e,t=R(4);
+if(t==0){const x=R(40)+10,y=R(40)+10;a=x+y;q=`${x} + ${y} = ؟`;e=`نجمع الآحاد ثم العشرات: ${x}+${y}=${a}`}
+else if(t==1){const x=R(9)+3,y=R(9)+3;a=x*y;q=`${x} × ${y} = ؟`;e=`${x} مضروبة في ${y} تساوي ${a}`}
+else if(t==2){const s=R(5)+2,d=R(6)+2;a=s+d*4;q=`أكمل المتتالية: ${s}، ${s+d}، ${s+2*d}، ${s+3*d}، ؟`;e=`الفرق ثابت = ${d} فالتالي ${a}`}
+else{const p=[10,20,25,50][R(4)],x=(R(9)+1)*20;a=x*p/100;q=`${p}% من ${x} = ؟`;e=`${x} × ${p} ÷ 100 = ${a}`}
+const o=new Set([a]);while(o.size<4)o.add(a+R(11)-5||a+7);
+const ar=[...o].sort(()=>r()-.5);qs.push({q,o:ar.map(String),a:ar.indexOf(a),e})}return qs}
+function seed(){return[
+{t:'تعلّم الحروف العربية',d:'قراءة وكتابة الحروف والكلمات',i:'🔤',c:[
+{t:'الحروف الهجائية',d:'اسمع الحرف وتعلّم كتابته',i:'✏️',secs:[{h:'اضغط الحرف لتسمعه ثم اكتبه بإصبعك',type:'grid',write:1,items:L('أبتثجحخدذرزسشصضطظعغفقكلمنهوي','ar')}]},
+{t:'قراءة الكلمات',d:'اضغط على الكلمة لتسمع نطقها',i:'📖',secs:[{h:'اضغط الكلمة لتسمع نطقها',type:'grid',items:W(['بيت','كتاب','قلم','شمس','قمر','باب','ولد','بنت','ماء','خبز'],'ar')}]},
+{t:'كتابة الكلمات',d:'تدرّب على كتابة الكلمات بإصبعك',i:'✍️',secs:[{h:'اختر كلمة ثم اكتبها فوق الشكل الباهت',type:'grid',write:1,items:W(['بيت','باب','قمر','ماء','ولد'],'ar')}]},
+{t:'اختبر نفسك في الحروف',d:'أسئلة قصيرة مع النتيجة والشرح',i:'🏆',secs:[{type:'quiz',qs:[Q('أي حرف يبدأ به كلمة "بيت"؟',['ب','ت','ن','ي'],0,'كلمة بيت تبدأ بحرف الباء.'),Q('كم حرفاً في كلمة "قلم"؟',['2','3','4','5'],1,'ق – ل – م ثلاثة حروف.'),Q('أي كلمة تبدأ بحرف الشين؟',['قمر','شمس','باب','ماء'],1,'شمس تبدأ بحرف الشين.')]}]}]},
+{t:'تعلّم الرياضيات',d:'الأرقام والجمع والطرح والضرب والقسمة',i:'➕',c:[
+{t:'الأرقام من ١ إلى ١٠',d:'اسمع الرقم وتعلّم كتابته',i:'🔢',secs:[{h:'اضغط الرقم لتسمعه ثم اكتبه',type:'grid',write:1,items:NA.map((n,i)=>({s:(i+1).toLocaleString('ar-EG'),say:n,l:'ar'}))}]},
+{t:'الجمع والطرح',d:'شرح مبسط بالأمثلة',i:'➖',secs:[{type:'text',html:'<h3>الجمع</h3><p>الجمع معناه ضم عددين معاً: ٣ + ٢ = ٥ (ثلاث تفاحات ومعها تفاحتان = خمس).</p><h3>الطرح</h3><p>الطرح معناه أخذ جزء من العدد: ٥ − ٢ = ٣.</p><p>مثال: ٧ + ٣ = ١٠ ، و ١٠ − ٤ = ٦ ، و ٠ + ٦ = ٦.</p>'}]},
+{t:'الضرب والقسمة',d:'جدول الضرب وشرح القسمة',i:'✖️',secs:[{type:'mult'},{type:'text',html:'<h3>القسمة</h3><p>القسمة توزيع عدد بالتساوي: ١٢ ÷ ٣ = ٤ لأن ٣ × ٤ = ١٢. القسمة عكس الضرب.</p>'}]},
+{t:'اختبر نفسك في الرياضيات',d:'أسئلة قصيرة مع النتيجة والشرح',i:'🏆',secs:[{type:'quiz',qs:[Q('٣ + ٥ = ؟',['٧','٨','٩','٦'],1,'٣ + ٥ = ٨'),Q('١٠ − ٤ = ؟',['٥','٦','٧','٤'],1,'١٠ − ٤ = ٦'),Q('٣ × ٤ = ؟',['١٢','٧','١٠','٩'],0,'٣ × ٤ = ١٢'),Q('١٨ ÷ ٣ = ؟',['٥','٧','٦','٩'],2,'٣ × ٦ = ١٨ إذن الناتج ٦')]}]}]},
+{t:'تعلّم اللغة الإنجليزية',d:'الحروف والقواعد والمفردات والاستماع',i:'🌍',c:[
+{t:'الحروف والقواعد',d:'حروف A–Z وكلمات وقواعد أساسية',i:'🔠',secs:[{h:'القسم الأول: الحروف (اضغط للنطق واكتب)',type:'grid',write:1,items:L('ABCDEFGHIJKLMNOPQRSTUVWXYZ','en')},{h:'كلمات بسيطة',type:'grid',write:1,items:W(['cat','dog','sun','book','apple'],'en')},{h:'القسم الثاني: القواعد',type:'text',html:'<p><b>I am / You are / He is:</b> نستخدم am مع I، وare مع you/we/they، وis مع he/she/it.</p><p>مثال: I am a student. She is happy. They are friends.</p><p><b>الجمع:</b> نضيف s غالباً: book → books.</p><p><b>a / an:</b> an قبل الحرف المتحرك: an apple, a book.</p>'}]},
+{t:'المفردات والاستماع',d:'كلمات يومية ومحادثات بطيئة وقراءة',i:'🎧',secs:[{h:'الحصيلة اللغوية: الأرقام',type:'grid',items:W(['one','two','three','four','five','six','seven','eight','nine','ten'],'en')},{h:'الألوان',type:'grid',items:W(['red','blue','green','yellow','black','white'],'en')},{h:'الأيام',type:'grid',items:W(['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],'en')},{h:'العائلة',type:'grid',items:W(['father','mother','brother','sister','grandfather','grandmother'],'en')},{h:'الطعام',type:'grid',items:W(['bread','water','milk','rice','apple','chicken'],'en')},{h:'استماع بطيء للمبتدئين',type:'grid',slow:1,items:W(['Hello, my name is Sara.','How are you today?','I am fine, thank you.','This is my family.'],'en')},{h:'قراءة قصيرة',type:'text',html:'<p dir="ltr">This is Ali. He has a red ball. The ball is big. Ali likes his ball.</p>'}]},
+{t:'اختبر نفسك في الإنجليزية',d:'أسئلة قصيرة مع النتيجة والشرح',i:'🏆',secs:[{type:'quiz',qs:[Q('What color is the sun?',['blue','yellow','green','black'],1,'The sun is yellow.'),Q('She ___ happy.',['am','are','is','be'],2,'مع she نستخدم is.'),Q('معنى book:',['قلم','باب','كتاب','بيت'],2,'book = كتاب')]}]}]},
+{t:'القدرات والتحصيلي',d:'اختبارات تدريبية شاملة',i:'🎓',c:[
+{t:'اختبارات القدرات',d:'٣٠ اختباراً × ٢٠ سؤالاً',i:'🧠',secs:[{type:'tests',k:'q'}]},{t:'اختبارات التحصيلي',d:'٣٠ اختباراً × ٢٠ سؤالاً',i:'📚',secs:[{type:'tests',k:'t'}]}]}]}
+const GR=['linear-gradient(135deg,#ff7a59,#ffb347)','linear-gradient(135deg,#7b61ff,#4dc9f6)','linear-gradient(135deg,#00b894,#8be04e)','linear-gradient(135deg,#ff4d8d,#ffb02e)'];
+function homeV(){return`<p class="m">اختر القسم الذي تريد التعلّم فيه 👇</p>`+S.tree.map((s,i)=>`<button class="sc" style="background:${GR[i%4]}" onclick="go('stage',${i})"><span class="ei">${esc(s.i)}</span><span><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></span><em>‹</em></button>`).join('')}
+function stageV(){const s=S.tree[S.si],g=GR[S.si%4];return`<div class="hero" style="background:${g}"><span class="ei">${esc(s.i)}</span><div><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></div></div>`+s.c.map((c,j)=>`<button class="cc" onclick="openClass(${S.si},${j})"><span class="ci" style="background:${g}">${esc(c.i||j+1)}</span><span><b>${esc(c.t)}</b><small>${esc(c.d||'')}</small></span>${ok()?'':'<em>🔒</em>'}</button>`).join('')}
+function classV(){const c=S.tree[S.si].c[S.ci];S.cur=[];let h=`<h3>${esc(c.t)}</h3>`;
+for(const sec of c.secs){S.cur.push(sec);const k=S.cur.length-1;h+=sec.h?`<h3>${esc(sec.h)}</h3>`:'';
+if(sec.type=='grid')h+=`<div class="card grid">${sec.items.map((x,i)=>`<button class="${S.W&&S.W.k==k&&S.W.i==i?'on':''}" onclick="tap(${k},${i})">${esc(x.s)}</button>`).join('')}</div>`+(S.W&&S.W.k==k?`<div class="card"><canvas id="cv"></canvas><p><button class="b g" onclick="clr()">مسح</button></p></div>`:'');
+else if(sec.type=='text')h+=`<div class="card">${sec.html}</div>`;
+else if(sec.type=='mult')h+=`<div class="card" style="overflow-x:auto"><table>${[1,2,3,4,5,6,7,8,9,10].map(a=>`<tr>${[1,2,3,4,5,6,7,8,9,10].map(b=>`<td>${a*b}</td>`).join('')}</tr>`).join('')}</table><p class="m">جدول الضرب (الصف × العمود)</p></div>`;
+else if(sec.type=='quiz')h+=`<div class="card"><button class="b" onclick="startQ(${k})">ابدأ الاختبار</button></div>`;
+else if(sec.type=='tests')h+=`<div class="card grid">${Array.from({length:30},(_,i)=>`<button onclick="testQ('${sec.k}',${i+1})">${i+1}</button>`).join('')}</div><button class="b g" onclick="testQ('${sec.k}',100+Math.floor(Math.random()*9000))">اختبار عشوائي جديد</button><p class="m">٣٠ اختباراً جاهزاً × ٢٠ سؤالاً</p>`}
+return h}
+function tap(k,i){const s=S.cur[k],x=s.items[i];sp(x.say,x.l,s.slow);if(s.write){S.W={k,i};r()}}
+function startQ(k){S.qz={qs:S.cur[k].qs,a:[],d:0};go('quiz')}
+function testQ(k,n){S.qz={qs:gen(k,n),a:[],d:0};go('quiz')}
+function quizV(){const z=S.qz;let h='';z.qs.forEach((q,i)=>{h+=`<div class="card"><b>${i+1}. ${esc(q.q)}</b>${q.o.map((o,j)=>`<button class="o1 ${z.d?(j==q.a?'ok':z.a[i]==j?'bad':''):z.a[i]==j?'sel':''}" onclick="pick(${i},${j})">${esc(o)}</button>`).join('')}${z.d?`<p class="m">💡 ${esc(q.e)}</p>`:''}</div>`});
+const sc=z.qs.filter((q,i)=>z.a[i]==q.a).length;
+return h+(z.d?`<div class="card"><h2>النتيجة: ${sc} من ${z.qs.length}</h2></div>`:`<button class="b o" onclick="S.qz.d=1;r();scrollTo(0,0)">إنهاء وعرض النتيجة</button>`)}
+function pick(i,j){if(!S.qz.d){S.qz.a[i]=j;const y=scrollY;r();scrollTo(0,y)}}
+let dr=0;function initCv(){const c=document.getElementById('cv');if(!c)return;const w=c.clientWidth,h=c.clientHeight,d=devicePixelRatio||1;c.width=w*d;c.height=h*d;const x=c.getContext('2d');x.scale(d,d);
+const it=S.cur[S.W.k].items[S.W.i].s;x.fillStyle='#8884';x.textAlign='center';x.textBaseline='middle';x.font=`${Math.min(170,w/(it.length*.7+.3))}px Tajawal,sans-serif`;x.fillText(it,w/2,h/2);
+x.strokeStyle=getComputedStyle(document.body).color;x.lineWidth=6;x.lineCap='round';x.lineJoin='round';
+const P=e=>{const b=c.getBoundingClientRect();return[e.clientX-b.left,e.clientY-b.top]};
+c.onpointerdown=e=>{dr=1;c.setPointerCapture(e.pointerId);x.beginPath();x.moveTo(...P(e))};c.onpointermove=e=>{if(dr){x.lineTo(...P(e));x.stroke()}};c.onpointerup=()=>dr=0}
+function clr(){r()}
+
+const sb=supabase.createClient('https://fjmgivtkcvtmcghpccvm.supabase.co','sb_publishable_EzpqyO3sCI95sI-vXpqUOQ_9j2jngn3');
+let S={cfg:{m:30,y:299,bank:'',name:'',iban:''},tree:[],me:null,v:'home',si:0,ci:0,tab:'r',reg:0,plan:'m',rc:null,rcb:null,rurl:null,W:null,cur:[],adm:{},busy:1,msg:''};
+const ok=()=>S.me&&(S.me.admin||S.me.st=='active');
+const go=(v,a,b)=>{S.v=v;if(a!=null)S.si=a;if(b!=null)S.ci=b;S.W=null;if(v=='pay')refresh();else if(v=='admin')admLoad();else r();scrollTo(0,0)};
+function sp(t,l,slow){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=l=='en'?'en-US':'ar-SA';u.rate=slow?.6:.85;speechSynthesis.speak(u)}catch(e){}}
+function openClass(si,ci){if(!ok())return go('pay');go('class',si,ci)}
+function back(){if(S.v=='class')go('stage');else if(S.v=='quiz')go('class');else go('home')}
+async function refresh(){
+const{data:{session}}=await sb.auth.getSession();if(!session){S.me=null;S.busy=0;return r()}
+const uid=session.user.id;
+const[p,a,c]=await Promise.all([sb.from('profiles').select('*').eq('id',uid).single(),sb.rpc('is_admin'),sb.from('settings').select('cfg').eq('id',1).single()]);
+const pr=p.data;S.me=pr?{id:uid,n:pr.name||pr.email,e:pr.email,st:pr.status,plan:pr.plan,rp:pr.receipt_path,admin:!!a.data}:null;
+if(c.data)S.cfg=c.data.cfg;
+if(S.me&&ok()){const t=await sb.from('content').select('tree').eq('id',1).maybeSingle();S.tree=t.data?t.data.tree:[];
+if(S.me.admin&&!t.data){S.tree=seed();await sb.from('content').insert({id:1,tree:S.tree})}}
+else if(S.me){const o=await sb.rpc('get_outline');S.tree=o.data||[]}
+S.rurl=null;if(S.me&&S.me.rp){const u=await sb.storage.from('receipts').createSignedUrl(S.me.rp,3600);S.rurl=u.data&&u.data.signedUrl}
+S.busy=0;r()}
+function r(){if(S.busy){app.innerHTML='<div class="card">⏳ جارٍ التحميل...</div>';return}
+const u=S.me;if(!u){app.innerHTML=authV();return}
+let h=`<div class="top"><h2>🌟 منصة التأسيس</h2><div>${u.admin?'<button class="b g" onclick="go(\'admin\')">الإدارة</button> ':''}<button class="b g" onclick="out()">خروج</button></div></div><div class="m">👋 مرحباً ${esc(u.n)} — ${u.admin?'مشرف':`<button class="pi" onclick="go('pay')">💳 ${u.st=='active'?'اشتراك فعّال':u.st=='pending'?'قيد المراجعة — عرض الإيصال':'غير مشترك — اشترك وأرفق الإيصال'} 📎</button>`}</div>`;
+if(S.v!='home')h+=`<p><button class="b g" onclick="back()">← رجوع</button></p>`;
+const V={home:homeV,stage:stageV,class:classV,pay:payV,quiz:quizV,admin:adminV}[S.v];
+app.innerHTML=h+V();if(S.v=='class')initCv()}
+function authV(){return`<div class="card"><h2>${S.reg?'إنشاء حساب':'تسجيل الدخول'}</h2>${S.reg?'<input id="n" placeholder="الاسم">':''}<input id="e" type="email" placeholder="البريد الإلكتروني"><input id="p" type="password" placeholder="كلمة المرور (٨ أحرف على الأقل)"><p><button class="b" onclick="auth()">${S.reg?'تسجيل':'دخول'}</button> <button class="b g" onclick="S.reg=!S.reg;S.msg='';r()">${S.reg?'لدي حساب':'حساب جديد'}</button></p>${S.msg?`<p class="m">${esc(S.msg)}</p>`:''}</div>`}
+async function auth(){const g=i=>(document.getElementById(i)||{}).value||'',e=g('e').trim().toLowerCase(),p=g('p'),n=g('n');if(!e||!p)return alert('أكمل الحقول');S.busy=1;r();let x;
+if(S.reg){x=await sb.auth.signUp({email:e,password:p,options:{data:{name:n}}});if(!x.error&&!x.data.session){S.busy=0;S.reg=0;S.msg='تم إنشاء الحساب. افتح بريدك واضغط رابط التأكيد ثم سجّل الدخول.';return r()}}
+else x=await sb.auth.signInWithPassword({email:e,password:p});
+if(x.error){S.busy=0;S.msg='خطأ: '+x.error.message;return r()}S.msg='';S.v='home';refresh()}
+async function out(){await sb.auth.signOut();S.me=null;S.tree=[];S.v='home';r()}
+function payV(){const u=S.me,c=S.cfg;if(u.admin)return`<div class="card">أنت مشرف — لا تحتاج اشتراكاً.</div>`;
+const note=u.st=='active'?`<div class="card"><h3>✅ اشتراكك فعّال</h3><p>الخطة: ${u.plan=='y'?'سنوي':'شهري'}</p></div>`:u.st=='pending'?`<div class="card"><h3>⏳ إيصالك قيد المراجعة</h3><p>سيتم تفعيل حسابك بعد موافقة المشرف.</p>${S.rurl?`<img class="rc" src="${S.rurl}">`:''}<p class="m">يمكنك استبدال الإيصال من الأسفل.</p></div>`:`<div class="card"><h3>🔒 المحتوى للمشتركين فقط</h3></div>`;
+if(u.st=='active')return note;
+return note+`<div class="card"><p>اختر الخطة:</p><button class="o1 ${S.plan=='m'?'sel':''}" onclick="S.plan='m';r()">شهري — ${esc(c.m)} ريال سعودي</button><button class="o1 ${S.plan=='y'?'sel':''}" onclick="S.plan='y';r()">سنوي — ${esc(c.y)} ريال سعودي</button></div>
+<div class="card"><h3>بيانات التحويل</h3><p>البنك: <b>${esc(c.bank)}</b><br>اسم الحساب: <b>${esc(c.name)}</b><br>الآيبان: <b dir="ltr">${esc(c.iban)}</b></p><label class="b g" style="display:inline-block">📎 إرفاق صورة الإيصال<input type="file" accept="image/*" hidden onchange="rcpt(this.files[0])"></label>${S.rc?`<img class="rc" src="${S.rc}">`:''}<p><button class="b" onclick="sub()">${u.st=='pending'?'إرسال الإيصال الجديد':'إرسال للمراجعة'}</button></p><p><button class="b g" onclick="refresh()">🔄 تحديث حالة الاشتراك</button></p></div>`}
+function rcpt(f){if(!f)return;const im=new Image();im.onload=()=>{const k=Math.min(1,900/im.width),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>{S.rcb=b;S.rc=URL.createObjectURL(b);r()},'image/jpeg',.7)};im.src=URL.createObjectURL(f)}
+async function sub(){if(!S.rcb)return alert('ارفع الإيصال أولاً');S.busy=1;r();const path=`${S.me.id}/${Date.now()}.jpg`;
+const up=await sb.storage.from('receipts').upload(path,S.rcb,{contentType:'image/jpeg'});if(up.error){S.busy=0;r();return alert('فشل الرفع: '+up.error.message)}
+const q=await sb.rpc('submit_receipt',{p_path:path,p_plan:S.plan});if(q.error)alert(q.error.message);S.rc=S.rcb=null;refresh()}
+async function admLoad(){S.busy=1;r();const A=S.adm;
+if(S.tab=='r'||S.tab=='u'){const q=await sb.from('profiles').select('*').order('created_at',{ascending:false});A.u=q.data||[];
+if(S.tab=='r'){const ps=A.u.filter(x=>x.status=='pending'&&x.receipt_path).map(x=>x.receipt_path);A.url={};if(ps.length){const s=await sb.storage.from('receipts').createSignedUrls(ps,3600);(s.data||[]).forEach(x=>A.url[x.path]=x.signedUrl)}}}
+S.busy=0;r()}
+function adminV(){const t=S.tab,A=S.adm,T=(k,l)=>`<button class="b ${t==k?'':'g'}" onclick="S.tab='${k}';admLoad()">${l}</button>`;let h=`<div class="tabs">${T('r','الاشتراكات')}${T('c','المحتوى')}${T('u','المستخدمون')}${T('s','الإعدادات')}</div>`;
+if(t=='r'){const p=(A.u||[]).filter(u=>u.status=='pending');h+=p.length?p.map(u=>`<div class="card"><b>${esc(u.name)}</b> <span class="m">${esc(u.email)} — ${u.plan=='y'?'سنوي':'شهري'}</span>${A.url&&A.url[u.receipt_path]?`<img class="rc" src="${A.url[u.receipt_path]}">`:''}<p><button class="b o" onclick="stt('${u.id}','active')">موافقة</button> <button class="b r" onclick="stt('${u.id}','none')">رفض</button></p></div>`).join(''):'<div class="card">لا توجد طلبات معلقة</div>'}
+if(t=='c')h+=`<div class="card"><p class="m">عدّل المراحل والصفوف والشروحات بصيغة JSON ثم احفظ.</p><textarea id="tj" dir="ltr" rows="16">${esc(JSON.stringify(S.tree,null,1))}</textarea><button class="b" onclick="saveTree()">حفظ</button> <button class="b g" onclick="if(confirm('استعادة الافتراضي؟')){S.tree=seed();saveTree(1)}">استعادة</button></div>`;
+if(t=='u')h+=(A.u||[]).map(u=>`<div class="card"><b>${esc(u.name)}</b> <span class="m">${esc(u.email)} — ${u.is_admin?'مشرف':u.status}</span>${u.id==S.me.id?'':`<p><button class="b g" onclick="adm('${u.id}',${!u.is_admin})">${u.is_admin?'إلغاء الإشراف':'تعيين مشرف'}</button> <button class="b g" onclick="stt('${u.id}','${u.status=='active'?'none':'active'}')">${u.status=='active'?'إيقاف الاشتراك':'تفعيل الاشتراك'}</button></p>`}</div>`).join('');
+if(t=='s'){const c=S.cfg;h+=`<div class="card">${[['m','السعر الشهري'],['y','السعر السنوي'],['bank','البنك'],['name','اسم الحساب'],['iban','الآيبان']].map(([k,l])=>`${l}<input id="c_${k}" value="${esc(c[k])}">`).join('')}<button class="b" onclick="saveCfg()">حفظ</button></div>`}
+return h}
+async function stt(id,s){const o={status:s};if(s=='none')o.receipt_path=null;const q=await sb.from('profiles').update(o).eq('id',id);if(q.error)alert(q.error.message);admLoad()}
+async function adm(id,v){const q=await sb.from('profiles').update({is_admin:v}).eq('id',id);if(q.error)alert(q.error.message);admLoad()}
+async function saveTree(silent){try{const t=silent?S.tree:JSON.parse(document.getElementById('tj').value);const q=await sb.from('content').upsert({id:1,tree:t});if(q.error)throw q.error;S.tree=t;alert('تم الحفظ');if(silent)r()}catch(e){alert('تعذر الحفظ: '+(e.message||'JSON غير صالح'))}}
+async function saveCfg(){const c={};['m','y','bank','name','iban'].forEach(k=>c[k]=document.getElementById('c_'+k).value);const q=await sb.from('settings').upsert({id:1,cfg:c});if(q.error)return alert(q.error.message);S.cfg=c;alert('تم الحفظ')}
+r();refresh();
+
+</script></body></html>
