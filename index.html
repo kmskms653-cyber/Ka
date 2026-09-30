@@ -68,6 +68,33 @@ body[data-th=math] h3,body[data-th=galaxy] h3,body[data-th=night] h3,body[data-t
 .hero{position:relative}.hero.mm{min-height:112px;padding-left:132px}
 .mas{position:absolute;left:8px;bottom:-4px;width:112px;filter:drop-shadow(0 6px 8px #0006);animation:fl 3.2s ease-in-out infinite}
 .mas2{width:120px;margin:0 auto;display:block;animation:fl 3s ease-in-out infinite}
+
+/* تحسين وضوح الأيقونات والنصوص في أقسام اللغتين العربية والإنجليزية */
+.grid button{background:#fff!important;color:#241b45!important;border:1px solid #9b8acb!important;font-weight:700;text-shadow:none;box-shadow:0 2px 5px #21144718}
+.grid button:nth-child(4n+1){background:#fff0e8!important}
+.grid button:nth-child(4n+2){background:#eaf8ff!important}
+.grid button:nth-child(4n+3){background:#e8fff5!important}
+.grid button:nth-child(4n){background:#fff7df!important}
+.grid button.on{background:#5b35d5!important;color:#fff!important;border:2px solid #39208f!important;box-shadow:0 3px 9px #39208f55}
+.sc{ text-shadow:0 1px 3px #24113c99 }
+.sc .ei{background:rgba(20,15,55,.28);text-shadow:none;border:1px solid #ffffff75;flex:none}
+.sc small{opacity:1;text-shadow:0 1px 3px #24113cbb}
+.cc .ci{flex:none;text-shadow:0 1px 2px #0006;border:1px solid #ffffff66}
+
+/* تحسين وضوح النصوص والأيقونات على الخلفيات الفاتحة */
+:root{--t:#17112f;--m:#46536a;--p:#5132d4;--p2:#e5ddff;}
+.big i,.ci,.ei{color:#21164d;text-shadow:none;}
+.sc,.hero{color:#fff;text-shadow:0 1px 2px #241044;}
+.sc small,.hero small{color:#fff;opacity:1;text-shadow:0 1px 2px #241044;}
+.cc{color:#17112f;background:#fff;}
+.cc small{color:#46536a;opacity:1;}
+.cc .ci{color:#fff;text-shadow:0 1px 2px #0008;}
+.grid button{color:#17112f;font-weight:700;border:1px solid #5b4b85;}
+.grid button.on{color:#fff;border-color:#3920a8;}
+.b.g{background:#e5ddff;color:#3820a7;border:1px solid #5132d4;font-weight:700;}
+.o1{color:#17112f;background:#fff;}
+.m{color:#46536a;}
+.pi{background:#b94719;color:#fff;font-weight:700;}
 </style><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#6c4cf1"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="التأسيس"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></head><body><div id="bg"></div><div id="app"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.95.3/dist/umd/supabase.js"></script>
 <script>
