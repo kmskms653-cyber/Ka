@@ -69,32 +69,34 @@ body[data-th=math] h3,body[data-th=galaxy] h3,body[data-th=night] h3,body[data-t
 .mas{position:absolute;left:8px;bottom:-4px;width:112px;filter:drop-shadow(0 6px 8px #0006);animation:fl 3.2s ease-in-out infinite}
 .mas2{width:120px;margin:0 auto;display:block;animation:fl 3s ease-in-out infinite}
 
-/* تحسين وضوح الأيقونات والنصوص في أقسام اللغتين العربية والإنجليزية */
-.grid button{background:#fff!important;color:#241b45!important;border:1px solid #9b8acb!important;font-weight:700;text-shadow:none;box-shadow:0 2px 5px #21144718}
-.grid button:nth-child(4n+1){background:#fff0e8!important}
-.grid button:nth-child(4n+2){background:#eaf8ff!important}
-.grid button:nth-child(4n+3){background:#e8fff5!important}
-.grid button:nth-child(4n){background:#fff7df!important}
+.hd{padding:10px 14px;border-radius:22px;margin:0 0 6px}
+:root{--t:#17112f;--m:#46536a;--p:#5132d4;--p2:#e5ddff}
+body[data-th=letters],body[data-th=nature]{--c:#fff;--t:#17112f;--m:#46536a;--p:#5132d4;--p2:#e5ddff}
+body[data-th] .hd,.sc,.fb{-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);border:1px solid rgba(255,255,255,.4);box-shadow:0 8px 26px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.5)}
+.sc,.hero{color:#fff;text-shadow:0 1px 3px rgba(36,16,68,.75)}
+.sc small,.hero small{color:#fff;opacity:1;font-weight:400}
+.ei{background:rgba(20,15,55,.3);border:1px solid rgba(255,255,255,.65);box-shadow:inset 0 1px 0 #fff6,0 4px 10px rgba(0,0,0,.25);text-shadow:none;flex:none}
+.fb{display:flex;align-items:center;gap:12px;width:100%;border-radius:20px;padding:14px;margin:10px 0;text-align:right;cursor:pointer;background:linear-gradient(135deg,rgba(255,210,63,.95),rgba(255,140,80,.92));color:#2a1f4d}
+.fb b{font-size:19px;display:block}.fb small{color:#2a1f4d;font-size:13px}.fb>span:nth-child(2){flex:1;display:flex;flex-direction:column}.fb em{font-style:normal;font-size:26px}
+.fr{font-style:normal;background:#ffd23f;color:#2a1f4d;border-radius:12px;padding:2px 10px;font-weight:800;font-size:14px;white-space:nowrap}
+.up{text-align:center}
+.grid button{background:#fff!important;color:#17112f!important;border:1px solid #5b4b85!important;font-weight:700;text-shadow:none;box-shadow:0 2px 5px #21144718}
+.grid button:nth-child(4n+1){background:#fff0e8!important}.grid button:nth-child(4n+2){background:#eaf8ff!important}.grid button:nth-child(4n+3){background:#e8fff5!important}.grid button:nth-child(4n){background:#fff7df!important}
 .grid button.on{background:#5b35d5!important;color:#fff!important;border:2px solid #39208f!important;box-shadow:0 3px 9px #39208f55}
-.sc{ text-shadow:0 1px 3px #24113c99 }
-.sc .ei{background:rgba(20,15,55,.28);text-shadow:none;border:1px solid #ffffff75;flex:none}
-.sc small{opacity:1;text-shadow:0 1px 3px #24113cbb}
-.cc .ci{flex:none;text-shadow:0 1px 2px #0006;border:1px solid #ffffff66}
-
-/* تحسين وضوح النصوص والأيقونات على الخلفيات الفاتحة */
-:root{--t:#17112f;--m:#46536a;--p:#5132d4;--p2:#e5ddff;}
-.big i,.ci,.ei{color:#21164d;text-shadow:none;}
-.sc,.hero{color:#fff;text-shadow:0 1px 2px #241044;}
-.sc small,.hero small{color:#fff;opacity:1;text-shadow:0 1px 2px #241044;}
-.cc{color:#17112f;background:#fff;}
-.cc small{color:#46536a;opacity:1;}
-.cc .ci{color:#fff;text-shadow:0 1px 2px #0008;}
-.grid button{color:#17112f;font-weight:700;border:1px solid #5b4b85;}
-.grid button.on{color:#fff;border-color:#3920a8;}
-.b.g{background:#e5ddff;color:#3820a7;border:1px solid #5132d4;font-weight:700;}
-.o1{color:#17112f;background:#fff;}
-.m{color:#46536a;}
-.pi{background:#b94719;color:#fff;font-weight:700;}
+.cc small{color:#46536a;opacity:1}.cc .ci{flex:none;color:#fff;text-shadow:0 1px 2px #0008;border:1px solid #ffffff66}
+.pi{background:#b94719;color:#fff;font-weight:700}
+.b.g{background:#e5ddff;color:#3820a7;border:1px solid #5132d4;font-weight:700}
+.o1{color:#17112f;background:#fff}
+body[data-th=letters] .hd,body[data-th=nature] .hd{background:rgba(255,255,255,.74);color:#17112f}
+body[data-th=letters] .card,body[data-th=nature] .card,body[data-th=letters] .cc,body[data-th=nature] .cc{background:rgba(255,255,255,.96);-webkit-backdrop-filter:none;backdrop-filter:none}
+body[data-th=math] .hd,body[data-th=galaxy] .hd,body[data-th=night] .hd{background:rgba(14,12,48,.62);color:#fff}
+body[data-th=math] .card,body[data-th=galaxy] .card,body[data-th=night] .card,body[data-th=math] .cc,body[data-th=galaxy] .cc,body[data-th=night] .cc{background:rgba(14,12,48,.9);color:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
+body[data-th=math] .cc small,body[data-th=galaxy] .cc small,body[data-th=night] .cc small{color:#c9bdf0}
+body[data-th=math] .b.g,body[data-th=galaxy] .b.g,body[data-th=night] .b.g{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.55)}
+body[data-th=math] .o1,body[data-th=galaxy] .o1,body[data-th=night] .o1{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);color:#fff}
+body[data-th=math] .o1.sel,body[data-th=galaxy] .o1.sel,body[data-th=night] .o1.sel{background:rgba(139,92,246,.55);border-color:#c4b0ff}
+body[data-th=math] .o1.ok,body[data-th=galaxy] .o1.ok,body[data-th=night] .o1.ok{background:rgba(46,158,91,.55);border-color:#6be39b}
+body[data-th=math] .o1.bad,body[data-th=galaxy] .o1.bad,body[data-th=night] .o1.bad{background:rgba(214,69,69,.55);border-color:#ff9a9a}
 </style><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#6c4cf1"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="التأسيس"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></head><body><div id="bg"></div><div id="app"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.95.3/dist/umd/supabase.js"></script>
 <script>
@@ -138,9 +140,10 @@ function seed(){return[
 const TH=['letters','math','nature','night'],MS=[['m-croc.webp','m-tiger.webp'],['m-rabbit.webp','m-elephant.webp']];
 const mas=(si,j,c)=>MS[si]?`<img class="${c}" src="${MS[si][j%2]}" alt="">`:'';
 function applyTheme(){const t=!S.me||S.v=='home'?'galaxy':['stage','class','quiz'].includes(S.v)?(TH[S.si]||''):'';if(t)document.body.dataset.th=t;else delete document.body.dataset.th;const b=document.getElementById('bg');if(b)b.className=t?'th-'+t:''}
+const GL=['linear-gradient(135deg,rgba(255,122,89,.88),rgba(255,179,71,.68))','linear-gradient(135deg,rgba(123,97,255,.88),rgba(77,201,246,.68))','linear-gradient(135deg,rgba(0,184,148,.88),rgba(139,224,78,.68))','linear-gradient(135deg,rgba(255,77,141,.88),rgba(255,176,46,.68))'];
 const GR=['linear-gradient(135deg,#ff7a59,#ffb347)','linear-gradient(135deg,#7b61ff,#4dc9f6)','linear-gradient(135deg,#00b894,#8be04e)','linear-gradient(135deg,#ff4d8d,#ffb02e)'];
-function homeV(){return`<p class="m">اختر القسم الذي تريد التعلّم فيه 👇</p>`+S.tree.map((s,i)=>`<button class="sc" style="background:${GR[i%4]}" onclick="go('stage',${i})"><span class="ei">${esc(s.i)}</span><span><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></span><em>‹</em></button>`).join('')}
-function stageV(){const s=S.tree[S.si],g=GR[S.si%4];return`<div class="hero${MS[S.si]?' mm':''}" style="background:${g}"><span class="ei">${esc(s.i)}</span><div><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></div>${mas(S.si,0,'mas')}</div>`+s.c.map((c,j)=>`<button class="cc" onclick="openClass(${S.si},${j})"><span class="ci" style="background:${g}">${esc(c.i||j+1)}</span><span><b>${esc(c.t)}</b><small>${esc(c.d||'')}</small></span>${ok()?'':'<em>🔒</em>'}</button>`).join('')}
+function homeV(){return`<p class="m">اختر القسم الذي تريد التعلّم فيه 👇</p>`+fb()+S.tree.map((s,i)=>`<button class="sc" style="background:${GL[i%4]}" onclick="go('stage',${i})"><span class="ei">${esc(s.i)}</span><span><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></span><em>‹</em></button>`).join('')}
+function stageV(){const s=S.tree[S.si],g=GR[S.si%4];return`<div class="hero${MS[S.si]?' mm':''}" style="background:${GR[S.si%4]}"><span class="ei">${esc(s.i)}</span><div><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></div>${mas(S.si,0,'mas')}</div>`+s.c.map((c,j)=>`<button class="cc" onclick="openClass(${S.si},${j})"><span class="ci" style="background:${g}">${esc(c.i||j+1)}</span><span><b>${esc(c.t)}</b><small>${esc(c.d||'')}</small></span>${ok()?'':isFree(S.si,j)?'<em class="fr">🎁 مجاني</em>':'<em>🔒</em>'}</button>`).join('')}
 function classV(){const c=S.tree[S.si].c[S.ci];S.cur=[];let h=`<div class="hero${MS[S.si]?' mm':''}" style="background:${GR[S.si%4]}"><span class="ei">${esc(c.i||'')}</span><div><b>${esc(c.t)}</b><small>${esc(c.d||'')}</small></div>${mas(S.si,S.ci,'mas')}</div>`;
 for(const sec of c.secs){S.cur.push(sec);const k=S.cur.length-1;h+=sec.h?`<h3>${esc(sec.h)}</h3>`:'';
 if(sec.type=='grid')h+=`<div class="card grid ${gc(sec.items)}">${sec.items.map((x,i)=>`<button class="${S.W&&S.W.k==k&&S.W.i==i?'on':''}" onclick="tap(${k},${i})">${esc(x.s)}</button>`).join('')}</div>`+(S.W&&S.W.k==k?`<div class="card"><canvas id="cv"></canvas><p><button class="b g" onclick="clr()">مسح</button></p></div>`:'');
@@ -148,13 +151,13 @@ else if(sec.type=='text')h+=`<div class="card">${fixHtml(sec.html)}</div>`;
 else if(sec.type=='mult')h+=`<div class="card" style="overflow-x:auto"><table>${[1,2,3,4,5,6,7,8,9,10].map(a=>`<tr>${[1,2,3,4,5,6,7,8,9,10].map(b=>`<td>${a*b}</td>`).join('')}</tr>`).join('')}</table><p class="m">جدول الضرب (الصف × العمود)</p></div>`;
 else if(sec.type=='quiz')h+=`<div class="card"><button class="b" onclick="startQ(${k})">ابدأ الاختبار</button></div>`;
 else if(sec.type=='tests')h+=testsV(sec.k)}
-return h}
+if(!ok())h+=upsell();return h}
 function tap(k,i){const s=S.cur[k],x=s.items[i];sp(x.say,x.l,s.slow);if(s.write){S.W={k,i};r()}}
 function startQ(k){S.qz={qs:S.cur[k].qs,a:[],d:0};go('quiz')}
 
 function quizV(){const z=S.qz;let h='';z.qs.forEach((q,i)=>{h+=`<div class="card" dir="${/^[^A-Za-z\u0621-\u064A]*[A-Za-z]/.test(q.q)?'ltr':'rtl'}"><div class="qh"><span class="qn">${i+1}</span><div class="qt" dir="auto"><b>${esc(q.q)}</b>${q.s?`<div class="m">${esc(q.s)}</div>`:''}</div></div>${q.o.map((o,j)=>`<button class="o1 ${z.d?(j==q.a?'ok':z.a[i]==j?'bad':''):z.a[i]==j?'sel':''}" onclick="pick(${i},${j})">${esc(o)}</button>`).join('')}${z.d?`<p class="m" dir="auto">💡 ${esc(q.e)}</p>`:''}</div>`});
 const sc=z.qs.filter((q,i)=>z.a[i]==q.a).length;
-return h+(z.d?`<div class="card" style="text-align:center">${mas(S.si,S.ci,'mas2')}<h2>النتيجة: ${sc} من ${z.qs.length}</h2><p>${sc/z.qs.length>=.7?'ممتاز! أحسنت 🎉':'حاول مرة أخرى وستتحسن ✨'}</p></div>`:`<button class="b o" onclick="S.qz.d=1;r();scrollTo(0,0)">إنهاء وعرض النتيجة</button>`)}
+return h+(z.d?`<div class="card" style="text-align:center">${mas(S.si,S.ci,'mas2')}<h2>النتيجة: ${sc} من ${z.qs.length}</h2><p>${sc/z.qs.length>=.7?'ممتاز! أحسنت 🎉':'حاول مرة أخرى وستتحسن ✨'}</p></div>${!ok()?upsell():''}`:`<button class="b o" onclick="S.qz.d=1;r();scrollTo(0,0)">إنهاء وعرض النتيجة</button>`)}
 function pick(i,j){if(!S.qz.d){S.qz.a[i]=j;const y=scrollY;r();scrollTo(0,y)}}
 let dr=0;function initCv(){const c=document.getElementById('cv');if(!c)return;const w=c.clientWidth,h=c.clientHeight,d=devicePixelRatio||1;c.width=w*d;c.height=h*d;const x=c.getContext('2d');x.scale(d,d);
 const it=S.cur[S.W.k].items[S.W.i].s;x.fillStyle='#8884';x.textAlign='center';x.textBaseline='middle';x.font=`${Math.min(170,w/(it.length*.7+.3))}px Tajawal,sans-serif`;x.fillText(it,w/2,h/2);
@@ -168,7 +171,8 @@ let S={cfg:{m:30,y:299,bank:'',name:'',iban:''},tree:[],me:null,v:'home',si:0,ci
 const ok=()=>S.me&&(S.me.admin||S.me.st=='active');
 const go=(v,a,b)=>{S.v=v;if(a!=null)S.si=a;if(b!=null)S.ci=b;S.W=null;if(v=='pay')refresh();else if(v=='admin')admLoad();else r();scrollTo(0,0)};
 function sp(t,l,slow){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=l=='en'?'en-US':'ar-SA';u.rate=slow?.6:.85;speechSynthesis.speak(u)}catch(e){}}
-function openClass(si,ci){if(!ok())return go('pay');go('class',si,ci)}
+const isFree=(si,ci)=>S.free&&S.free.si==si&&S.free.ci==ci;
+function openClass(si,ci){if(!ok()&&!isFree(si,ci))return go('pay');go('class',si,ci)}
 function back(){if(S.v=='class')go('stage');else if(S.v=='quiz')go('class');else go('home')}
 async function refresh(){
 const{data:{session}}=await sb.auth.getSession();if(!session){S.me=null;S.busy=0;return r()}
@@ -176,14 +180,14 @@ const uid=session.user.id;
 const[p,a,c]=await Promise.all([sb.from('profiles').select('*').eq('id',uid).single(),sb.rpc('is_admin'),sb.from('settings').select('cfg').eq('id',1).single()]);
 const pr=p.data;S.me=pr?{id:uid,n:pr.name||pr.email,e:pr.email,st:pr.status,plan:pr.plan,rp:pr.receipt_path,admin:!!a.data}:null;
 if(c.data)S.cfg=c.data.cfg;
-if(S.me&&ok()){const t=await sb.from('content').select('tree').eq('id',1).maybeSingle();S.tree=t.data?t.data.tree:[];
+S.free=null;if(S.me&&ok()){const t=await sb.from('content').select('tree').eq('id',1).maybeSingle();S.tree=t.data?t.data.tree:[];
 if(S.me.admin&&!t.data){S.tree=seed();await sb.from('content').insert({id:1,tree:S.tree})}}
-else if(S.me){const o=await sb.rpc('get_outline');S.tree=o.data||[]}
+else if(S.me){const o=await sb.rpc('get_outline');S.tree=o.data||[];const f=await sb.rpc('get_free_lesson'),d=f.data;if(d&&d.cls&&S.tree[d.si]&&S.tree[d.si].c[d.ci]){S.free=d;S.tree[d.si].c[d.ci]=d.cls}}
 S.rurl=null;if(S.me&&S.me.rp){const u=await sb.storage.from('receipts').createSignedUrl(S.me.rp,3600);S.rurl=u.data&&u.data.signedUrl}
 S.busy=0;r()}
 function r(){applyTheme();if(S.busy){app.innerHTML='<div class="card">⏳ جارٍ التحميل...</div>';return}
 const u=S.me;if(!u){app.innerHTML=authV();return}
-let h=`<div class="top"><h2>🌟 منصة التأسيس</h2><div>${u.admin?'<button class="b g" onclick="go(\'admin\')">الإدارة</button> ':''}<button class="b g" onclick="out()">خروج</button></div></div><div class="m">👋 مرحباً ${esc(u.n)} — ${u.admin?'مشرف':`<button class="pi" onclick="go('pay')">💳 ${u.st=='active'?'اشتراك فعّال':u.st=='pending'?'قيد المراجعة — عرض الإيصال':'غير مشترك — اشترك وأرفق الإيصال'} 📎</button>`}</div>`;
+let h=`<div class="hd"><div class="top"><h2>🌟 منصة التأسيس</h2><div>${u.admin?'<button class="b g" onclick="go(\'admin\')">الإدارة</button> ':''}<button class="b g" onclick="out()">خروج</button></div></div><div class="m">👋 مرحباً ${esc(u.n)} — ${u.admin?'مشرف':`<button class="pi" onclick="go('pay')">💳 ${u.st=='active'?'اشتراك فعّال':u.st=='pending'?'قيد المراجعة — عرض الإيصال':'غير مشترك — اشترك وأرفق الإيصال'} 📎</button>`}</div></div>`;
 if(S.v!='home')h+=`<p><button class="b g" onclick="back()">← رجوع</button></p>`;
 const V={home:homeV,stage:stageV,class:classV,pay:payV,quiz:quizV,admin:adminV}[S.v];
 app.innerHTML=h+V();if(S.v=='class')initCv()}
@@ -196,7 +200,7 @@ async function out(){await sb.auth.signOut();S.me=null;S.tree=[];S.v='home';r()}
 function payV(){const u=S.me,c=S.cfg;if(u.admin)return`<div class="card">أنت مشرف — لا تحتاج اشتراكاً.</div>`;
 const note=u.st=='active'?`<div class="card"><h3>✅ اشتراكك فعّال</h3><p>الخطة: ${u.plan=='y'?'سنوي':'شهري'}</p></div>`:u.st=='pending'?`<div class="card"><h3>⏳ إيصالك قيد المراجعة</h3><p>سيتم تفعيل حسابك بعد موافقة المشرف.</p>${S.rurl?`<img class="rc" src="${S.rurl}">`:''}<p class="m">يمكنك استبدال الإيصال من الأسفل.</p></div>`:`<div class="card"><h3>🔒 المحتوى للمشتركين فقط</h3></div>`;
 if(u.st=='active')return note;
-return note+`<div class="card"><p>اختر الخطة:</p><button class="o1 ${S.plan=='m'?'sel':''}" onclick="S.plan='m';r()">شهري — ${esc(c.m)} ريال سعودي</button><button class="o1 ${S.plan=='y'?'sel':''}" onclick="S.plan='y';r()">سنوي — ${esc(c.y)} ريال سعودي</button></div>
+return note+(S.free?`<div class="card"><button class="b o" onclick="go('class',${S.free.si},${S.free.ci})">🎁 جرّب الدرس المجاني أولاً</button></div>`:'')+`<div class="card"><p>اختر الخطة:</p><button class="o1 ${S.plan=='m'?'sel':''}" onclick="S.plan='m';r()">شهري — ${esc(c.m)} ريال سعودي</button><button class="o1 ${S.plan=='y'?'sel':''}" onclick="S.plan='y';r()">سنوي — ${esc(c.y)} ريال سعودي</button></div>
 <div class="card"><h3>بيانات التحويل</h3><p>البنك: <b>${esc(c.bank)}</b><br>اسم الحساب: <b>${esc(c.name)}</b><br>الآيبان: <b dir="ltr">${esc(c.iban)}</b></p><label class="b g" style="display:inline-block">📎 إرفاق صورة الإيصال<input type="file" accept="image/*" hidden onchange="rcpt(this.files[0])"></label>${S.rc?`<img class="rc" src="${S.rc}">`:''}<p><button class="b" onclick="sub()">${u.st=='pending'?'إرسال الإيصال الجديد':'إرسال للمراجعة'}</button></p><p><button class="b g" onclick="refresh()">🔄 تحديث حالة الاشتراك</button></p></div>`}
 function rcpt(f){if(!f)return;const im=new Image();im.onload=()=>{const k=Math.min(1,900/im.width),c=document.createElement('canvas');c.width=im.width*k;c.height=im.height*k;c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(b=>{S.rcb=b;S.rc=URL.createObjectURL(b);r()},'image/jpeg',.7)};im.src=URL.createObjectURL(f)}
 async function sub(){if(!S.rcb)return alert('ارفع الإيصال أولاً');S.busy=1;r();const path=`${S.me.id}/${Date.now()}.jpg`;
@@ -212,14 +216,16 @@ if(t=='r'){const p=(A.u||[]).filter(u=>u.status=='pending');h+=p.length?p.map(u=
 if(t=='b')h+=bankV();
 if(t=='c')h+=`<div class="card"><p class="m">عدّل المراحل والصفوف والشروحات بصيغة JSON ثم احفظ.</p><textarea id="tj" dir="ltr" rows="16">${esc(JSON.stringify(S.tree,null,1))}</textarea><button class="b" onclick="saveTree()">حفظ</button> <button class="b g" onclick="if(confirm('استعادة الافتراضي؟')){S.tree=seed();saveTree(1)}">استعادة</button></div>`;
 if(t=='u')h+=(A.u||[]).map(u=>`<div class="card"><b>${esc(u.name)}</b> <span class="m">${esc(u.email)} — ${u.is_admin?'مشرف':u.status}</span>${u.id==S.me.id?'':`<p><button class="b g" onclick="adm('${u.id}',${!u.is_admin})">${u.is_admin?'إلغاء الإشراف':'تعيين مشرف'}</button> <button class="b g" onclick="stt('${u.id}','${u.status=='active'?'none':'active'}')">${u.status=='active'?'إيقاف الاشتراك':'تفعيل الاشتراك'}</button></p>`}</div>`).join('');
-if(t=='s'){const c=S.cfg;h+=`<div class="card">${[['m','السعر الشهري'],['y','السعر السنوي'],['bank','البنك'],['name','اسم الحساب'],['iban','الآيبان']].map(([k,l])=>`${l}<input id="c_${k}" value="${esc(c[k])}">`).join('')}<button class="b" onclick="saveCfg()">حفظ</button></div>`}
+if(t=='s'){const c=S.cfg;h+=`<div class="card">${[['m','السعر الشهري'],['y','السعر السنوي'],['bank','البنك'],['name','اسم الحساب'],['iban','الآيبان']].map(([k,l])=>`${l}<input id="c_${k}" value="${esc(c[k])}">`).join('')}<label>الدرس المجاني (بدون اشتراك)</label><select id="c_free"><option value="">بدون درس مجاني</option>${S.tree.map((s,i)=>s.c.map((c,j)=>(c.secs||[]).some(x=>x.type=='tests')?'':`<option value="${i}:${j}"${S.cfg.free&&S.cfg.free.si==i&&S.cfg.free.ci==j?' selected':''}>${esc(s.t)} — ${esc(c.t)}</option>`).join('')).join('')}</select><button class="b" onclick="saveCfg()">حفظ</button></div>`}
 return h}
 async function stt(id,s){const o={status:s};if(s=='none')o.receipt_path=null;const q=await sb.from('profiles').update(o).eq('id',id);if(q.error)alert(q.error.message);admLoad()}
 async function adm(id,v){const q=await sb.from('profiles').update({is_admin:v}).eq('id',id);if(q.error)alert(q.error.message);admLoad()}
 async function saveTree(silent){try{const t=silent?S.tree:JSON.parse(document.getElementById('tj').value);const q=await sb.from('content').upsert({id:1,tree:t});if(q.error)throw q.error;S.tree=t;alert('تم الحفظ');if(silent)r()}catch(e){alert('تعذر الحفظ: '+(e.message||'JSON غير صالح'))}}
-async function saveCfg(){const c={};['m','y','bank','name','iban'].forEach(k=>c[k]=document.getElementById('c_'+k).value);const q=await sb.from('settings').upsert({id:1,cfg:c});if(q.error)return alert(q.error.message);S.cfg=c;alert('تم الحفظ')}
+async function saveCfg(){const c={};['m','y','bank','name','iban'].forEach(k=>c[k]=document.getElementById('c_'+k).value);const fv=document.getElementById('c_free').value;if(fv){const p=fv.split(':');c.free={si:+p[0],ci:+p[1]}}const q=await sb.from('settings').upsert({id:1,cfg:c});if(q.error)return alert(q.error.message);S.cfg=c;alert('تم الحفظ')}
 
-S.tl={};
+S.tl={};S.free=null;
+function fb(){if(ok()||!S.free)return'';const c=S.tree[S.free.si].c[S.free.ci];return`<button class="fb" onclick="go('class',${S.free.si},${S.free.ci})"><span class="ei">🎁</span><span><b>جرّب درساً مجانياً</b><small>${esc(c.t)} — بدون اشتراك</small></span><em>‹</em></button>`}
+function upsell(){return`<div class="card up"><h3>🎉 أعجبك الدرس؟</h3><p>اشترك لتفتح كل الدروس والاختبارات في جميع الأقسام.</p><button class="b" onclick="go('pay')">اشترك الآن</button></div>`}
 function testsV(k){const A=S.tl[k];
 if(A===undefined||A==='L'){if(A===undefined)loadTL(k);return'<div class="card">⏳ جارٍ تحميل الاختبارات...</div>'}
 if(!A.length)return`<div class="card">لم تُضف الأسئلة بعد.${S.me.admin?' من الإدارة ← بنك الأسئلة استورد ملفات الأسئلة.':''}</div>`;
