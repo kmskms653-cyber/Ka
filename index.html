@@ -108,6 +108,20 @@ table.vt th{background:var(--p2);color:var(--t);padding:6px 8px;border:1px solid
 table.vt td{padding:6px 8px;border:1px solid rgba(120,120,150,.35);vertical-align:top}
 .tb{background:none;border:0;color:inherit;font:inherit;cursor:pointer;text-align:start;padding:0;font-weight:700;display:inline-flex;gap:6px;align-items:center}
 .tb::before{content:'🔊';font-size:13px}
+
+.ck{display:flex;gap:8px;align-items:flex-start;margin:8px 0;font-size:15px;line-height:1.5}.ck input{width:auto;margin-top:4px;flex:none}.ck a,.m a{color:var(--p);text-decoration:underline;cursor:pointer}
+.b:disabled{opacity:.45}
+.pbody{max-height:46vh;overflow:auto;padding:4px 2px;border-top:1px solid rgba(120,120,150,.3);border-bottom:1px solid rgba(120,120,150,.3);margin:8px 0}
+#pol{position:fixed;inset:0;background:rgba(10,8,30,.65);z-index:300;display:flex;align-items:center;justify-content:center;padding:14px}
+#pol .pb{background:#fff;color:#17112f;border-radius:18px;padding:16px;max-width:560px;width:100%;max-height:88vh;overflow:auto}
+#pol .x{float:left;background:#eee;border:0;border-radius:50%;width:34px;height:34px;font-size:16px;cursor:pointer}
+
+.hg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.sq{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;aspect-ratio:1/1;min-height:150px;padding:12px;border-radius:24px;cursor:pointer;color:#fff;border:1px solid rgba(255,255,255,.4);text-shadow:0 1px 3px rgba(36,16,68,.75);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);box-shadow:0 8px 26px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .15s}
+.sq:active{transform:scale(.96)}
+.sq .ei{width:56px;height:56px;font-size:30px;border-radius:18px}
+.sq b{font-size:17px;line-height:1.3}
+.sq small{color:#fff;font-size:12px;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 </style><link rel="manifest" href="manifest.json"><meta name="theme-color" content="#6c4cf1"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="التأسيس"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"></head><body><div id="bg"></div><div id="app"></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.95.3/dist/umd/supabase.js"></script>
 <script>
@@ -153,7 +167,10 @@ const mas=(si,j,c)=>MS[si]?`<img class="${c}" src="${MS[si][j%2]}" alt="">`:'';
 function applyTheme(){const t=S.v=='home'||S.v=='auth'?'galaxy':['stage','class','quiz'].includes(S.v)?(TH[S.si]||''):'';if(t)document.body.dataset.th=t;else delete document.body.dataset.th;const b=document.getElementById('bg');if(b)b.className=t?'th-'+t:''}
 const GL=['linear-gradient(135deg,rgba(255,122,89,.88),rgba(255,179,71,.68))','linear-gradient(135deg,rgba(123,97,255,.88),rgba(77,201,246,.68))','linear-gradient(135deg,rgba(0,184,148,.88),rgba(139,224,78,.68))','linear-gradient(135deg,rgba(255,77,141,.88),rgba(255,176,46,.68))','linear-gradient(135deg,rgba(230,57,70,.9),rgba(244,162,97,.7))'];
 const GR=['linear-gradient(135deg,#ff7a59,#ffb347)','linear-gradient(135deg,#7b61ff,#4dc9f6)','linear-gradient(135deg,#00b894,#8be04e)','linear-gradient(135deg,#ff4d8d,#ffb02e)','linear-gradient(135deg,#e63946,#f4a261)'];
-function homeV(){return`<p class="m">اختر القسم الذي تريد التعلّم فيه 👇</p>`+fb()+S.tree.map((s,i)=>`<button class="sc" style="background:${GL[i%5]}" onclick="go('stage',${i})"><span class="ei">${esc(s.i)}</span><span><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></span><em>‹</em></button>`).join('')}
+function homeV(){const sq=[],wd=[];S.tree.forEach((s,i)=>(String(s.t).includes('القدرات')?wd:sq).push(i));
+const card=i=>{const s=S.tree[i];return`<button class="sq" style="background:${GL[i%5]}" onclick="go('stage',${i})"><span class="ei">${esc(s.i)}</span><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></button>`};
+const wide=i=>{const s=S.tree[i];return`<button class="sc" style="background:${GL[i%5]}" onclick="go('stage',${i})"><span class="ei">${esc(s.i)}</span><span><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></span><em>‹</em></button>`};
+return`<p class="m">اختر القسم الذي تريد التعلّم فيه 👇</p>`+fb()+`<div class="hg">${sq.map(card).join('')}</div>`+wd.map(wide).join('')}
 function stageV(){const s=S.tree[S.si],g=GR[S.si%5];const hero=`<div class="hero${MS[S.si]?' mm':''}" style="background:${GR[S.si%5]}"><span class="ei">${esc(s.i)}</span><div><b>${esc(s.t)}</b><small>${esc(s.d||'')}</small></div>${mas(S.si,0,'mas')}</div>`;
 const gs=[...new Set(s.c.map(c=>c.g).filter(Boolean))];if(S.grp!=null&&!gs[S.grp])S.grp=null;
 if(gs.length&&S.grp==null)return hero+gs.map((n,i)=>{const f=s.c.find(c=>c.g==n);return`<button class="cc" onclick="S.grp=${i};r();scrollTo(0,0)"><span class="ci" style="background:${g}">${esc(f.gi||'📚')}</span><span><b>${esc(n)}</b><small>${esc(f.gd||'')}</small></span><em>‹</em></button>`}).join('');
@@ -194,7 +211,7 @@ async function refresh(){
 const{data:{session}}=await sb.auth.getSession();if(!session){S.me=null;S.free=null;const[o,f,pc]=await Promise.all([sb.rpc('get_outline'),sb.rpc('get_free_lesson'),sb.rpc('get_public_cfg')]);S.tree=o.data||[];const d=f.data;if(d&&d.cls&&S.tree[d.si]&&S.tree[d.si].c[d.ci]){S.free=d;S.tree[d.si].c[d.ci]=d.cls}if(pc.data)S.cfg={...S.cfg,...pc.data};S.rurl=null;S.busy=0;return r()}
 const uid=session.user.id;
 const[p,a,c,ow]=await Promise.all([sb.from('profiles').select('*').eq('id',uid).single(),sb.rpc('is_admin'),sb.from('settings').select('cfg').eq('id',1).single(),sb.rpc('is_owner')]);
-const pr=p.data;S.me=pr?{id:uid,n:pr.name||pr.email,e:pr.email,st:pr.status,plan:pr.plan,rp:pr.receipt_path,admin:!!a.data,owner:!!(ow&&ow.data)}:null;
+const pr=p.data;S.me=pr?{id:uid,n:pr.name||pr.email,e:pr.email,st:pr.status,plan:pr.plan,rp:pr.receipt_path,admin:!!a.data,owner:!!(ow&&ow.data),needTerms:('terms_version' in pr)&&pr.terms_version!==TERMS_V}:null;
 if(c.data)S.cfg=c.data.cfg;
 S.free=null;if(S.me&&ok()){const t=await sb.from('content').select('tree').eq('id',1).maybeSingle();S.tree=t.data?t.data.tree:[];
 if(S.me.admin&&!t.data){S.tree=seed();await sb.from('content').insert({id:1,tree:S.tree})}}
@@ -202,14 +219,14 @@ else if(S.me){const o=await sb.rpc('get_outline');S.tree=o.data||[];const f=awai
 S.rurl=null;if(S.me&&S.me.rp){const u=await sb.storage.from('receipts').createSignedUrl(S.me.rp,3600);S.rurl=u.data&&u.data.signedUrl}
 S.busy=0;r()}
 function r(){applyTheme();if(S.busy){app.innerHTML='<div class="card">⏳ جارٍ التحميل...</div>';return}
-const u=S.me||{n:'',guest:1};
+const u=S.me||{n:'',guest:1};if(u.needTerms){app.innerHTML=termsGate();return}
 let h=`<div class="hd"><div class="top"><h2>🌟 منصة التأسيس</h2><div>${u.admin?'<button class="b g" onclick="go(\'admin\')">الإدارة</button> ':''}${u.guest?'<button class="b g" onclick="goAuth()">دخول / تسجيل</button>':'<button class="b g" onclick="out()">خروج</button>'}</div></div><div class="m">👋 مرحباً ${u.guest?'بك':esc(u.n)} — ${u.guest?'<button class="pi" onclick="goAuth(\'pay\')">💳 اشترك الآن</button>':u.admin?(u.owner?'المشرف الرئيسي':'مشرف مساعد'):`<button class="pi" onclick="go('pay')">💳 ${u.st=='active'?'اشتراك فعّال':u.st=='pending'?'قيد المراجعة — عرض الإيصال':'غير مشترك — اشترك وأرفق الإيصال'} 📎</button>`}</div></div>`;
 if(S.v!='home')h+=`<p><button class="b g" onclick="back()">← رجوع</button></p>`;
 const V={home:homeV,stage:stageV,class:classV,pay:payV,quiz:quizV,admin:adminV,auth:authV}[S.v];
-app.innerHTML=h+V();if(S.v=='class')initCv()}
-function authV(){return`<div class="card"><h2>${S.reg?'إنشاء حساب':'تسجيل الدخول'}</h2>${S.reg?'<input id="n" placeholder="الاسم">':''}<input id="e" type="email" placeholder="البريد الإلكتروني"><input id="p" type="password" placeholder="كلمة المرور (٨ أحرف على الأقل)"><p><button class="b" onclick="auth()">${S.reg?'تسجيل':'دخول'}</button> <button class="b g" onclick="S.reg=!S.reg;S.msg='';r()">${S.reg?'لدي حساب':'حساب جديد'}</button></p>${S.msg?`<p class="${S.msg.startsWith('خطأ')?'em':'sm'}">${esc(S.msg)}</p>`:''}${S.reg&&!S.msg?'<p class="m">بعد التسجيل: أكّد بريدك من الرسالة في البريد وعُد إلى تسجيل الدخول</p>':''}</div>`}
-async function auth(){const g=i=>(document.getElementById(i)||{}).value||'',e=g('e').trim().toLowerCase(),p=g('p'),n=g('n');if(!e||!p)return alert('أكمل الحقول');S.busy=1;r();let x;
-if(S.reg){x=await sb.auth.signUp({email:e,password:p,options:{data:{name:n}}});if(!x.error&&!x.data.session){S.busy=0;S.reg=0;S.msg='أكّد بريدك من الرسالة في البريد وعُد إلى تسجيل الدخول';return r()}}
+app.innerHTML=h+V()+(S.v=='home'?foot():'');if(S.v=='class')initCv()}
+function authV(){return`<div class="card"><h2>${S.reg?'إنشاء حساب':'تسجيل الدخول'}</h2>${S.reg?'<input id="n" placeholder="الاسم">':''}<input id="e" type="email" placeholder="البريد الإلكتروني"><input id="p" type="password" placeholder="كلمة المرور (٨ أحرف على الأقل)">${S.reg?`<label class="ck"><input type="checkbox" id="tc"> أوافق على <a onclick="showPolicy()">سياسة الخصوصية وشروط الاستخدام</a></label>`:`<p class="m" style="text-align:center"><a onclick="showPolicy()">سياسة الخصوصية وشروط الاستخدام</a></p>`}<p><button class="b" onclick="auth()">${S.reg?'تسجيل':'دخول'}</button> <button class="b g" onclick="S.reg=!S.reg;S.msg='';r()">${S.reg?'لدي حساب':'حساب جديد'}</button></p>${S.msg?`<p class="${S.msg.startsWith('خطأ')?'em':'sm'}">${esc(S.msg)}</p>`:''}${S.reg&&!S.msg?'<p class="m">بعد التسجيل: أكّد بريدك من الرسالة في البريد وعُد إلى تسجيل الدخول</p>':''}</div>`}
+async function auth(){const g=i=>(document.getElementById(i)||{}).value||'',e=g('e').trim().toLowerCase(),p=g('p'),n=g('n');if(!e||!p)return alert('أكمل الحقول');if(S.reg&&!(document.getElementById('tc')||{}).checked)return alert('يجب الموافقة على سياسة الخصوصية وشروط الاستخدام أولاً');S.busy=1;r();let x;
+if(S.reg){x=await sb.auth.signUp({email:e,password:p,options:{data:{name:n,terms:TERMS_V}}});if(!x.error&&!x.data.session){S.busy=0;S.reg=0;S.msg='أكّد بريدك من الرسالة في البريد وعُد إلى تسجيل الدخول';return r()}}
 else x=await sb.auth.signInWithPassword({email:e,password:p});
 if(x.error){S.busy=0;S.msg='خطأ: '+x.error.message;return r()}S.msg='';S.v=S.after||'home';S.after=null;refresh()}
 function goAuth(n){S.after=n||null;S.msg='';S.reg=0;go('auth')}
@@ -271,6 +288,20 @@ function guestPay(){const c=S.cfg;return(S.free?`<div class="card"><button class
 function vtV(sec,k){const sc=sec.sp||[];return`<div class="card tw"><table class="vt">${sec.cols.length?`<thead><tr>${sec.cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>`:''}<tbody>${sec.rows.map((r,i)=>`<tr>${r.map((c,j)=>sc.includes(j)&&sec.raw[i][j]?`<td><button class="tb" onclick="tv(${k},${i},${j})">${c}</button></td>`:`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`}
 function tv(k,i,j){const x=S.cur[k];sp(x.raw[i][j],x.l)}
 S.grp=null;S.uq='';const OWNER='kmskms653@gmail.com';
+
+const TERMS_V='1',CONTACT='Kmskms653@gmail.com';
+const POLICY=`<h3>مقدمة</h3><p>يحترم تطبيق «تأسيس» خصوصيتك وخصوصية أطفالك. توضح هذه الصفحة ما نجمعه من بيانات ولماذا، وما تلتزم به عند استخدام التطبيق. باستخدامك التطبيق وتسجيل حساب فيه فإنك توافق على هذه السياسة والشروط.</p>
+<h3>البيانات التي نجمعها</h3><p>• الاسم والبريد الإلكتروني وكلمة المرور (تُخزَّن مشفّرة ولا نراها).<br>• حالة الاشتراك ونوع الخطة.<br>• صورة إيصال التحويل البنكي التي ترفعها لإثبات الدفع، وقد تظهر فيها بيانات حسابك البنكي.<br>لا نجمع موقعك الجغرافي ولا جهات اتصالك ولا بيانات بطاقاتك.</p>
+<h3>الأطفال</h3><p>التطبيق تعليمي ومناسب للأطفال بإشراف ولي الأمر. إذا كان المستخدم دون ١٨ عاماً فيجب أن يُنشئ ولي الأمر الحساب أو يوافق على التسجيل نيابة عنه. لا نطلب من الأطفال أي بيانات غير ما ذُكر أعلاه.</p>
+<h3>كيف نستخدم بياناتك</h3><p>نستخدمها لإنشاء حسابك، ومراجعة إيصالات الدفع وتفعيل الاشتراك، وتمكينك من الوصول إلى المحتوى المدفوع، والتواصل معك بخصوص حسابك. لا نستخدمها للإعلانات ولا نبيعها لأي جهة.</p>
+<h3>مشاركة البيانات وحمايتها</h3><p>تُخزَّن بياناتنا لدى مزوّدي خدمات تقنية موثوقين لاستضافة قاعدة البيانات والموقع (Supabase وVercel). تُنقل البيانات عبر اتصال مشفّر، وتُحفظ صور الإيصالات في مخزن خاص لا يطّلع عليه إلا المشرفون المخوّلون.</p>
+<h3>حقوقك</h3><p>يحق لك طلب الاطلاع على بياناتك أو تصحيحها أو حذف حسابك وإيصالاتك، وذلك بالتواصل معنا عبر البريد المذكور أدناه.</p>
+<h3>شروط الاستخدام</h3><p>• الاشتراك للاستخدام الشخصي والتعليمي، ولا يجوز مشاركة الحساب أو نسخ المحتوى أو إعادة بيعه.<br>• يتم الاشتراك بالتحويل البنكي المباشر، ويُفعَّل الحساب بعد مراجعة الإيصال والموافقة عليه.<br>• المحتوى تعليمي مساعد ولا يضمن نتائج محددة في الاختبارات الرسمية.<br>• يجوز لنا إيقاف أي حساب يخالف هذه الشروط.<br>• قد نحدّث هذه الصفحة عند الحاجة، وسنطلب موافقتك من جديد عند التغييرات الجوهرية.</p>
+<h3>التواصل</h3><p>للاستفسار أو طلبات الحذف: <bdi dir="ltr">Kmskms653@gmail.com</bdi></p><p class="m">الإصدار ١ — أكتوبر ٢٠٢٦</p>`;
+function foot(){return`<p class="m" style="text-align:center;margin-top:18px"><a onclick="showPolicy()">سياسة الخصوصية وشروط الاستخدام</a></p>`}
+function showPolicy(){if(document.getElementById('pol'))return;const d=document.createElement('div');d.id='pol';d.innerHTML=`<div class="pb"><button class="x" onclick="document.getElementById('pol').remove()">✕</button><h2>سياسة الخصوصية وشروط الاستخدام</h2>${POLICY}<p><button class="b" onclick="document.getElementById('pol').remove()">إغلاق</button></p></div>`;document.body.appendChild(d)}
+function termsGate(){return`<div class="card"><h2>سياسة الخصوصية وشروط الاستخدام</h2><div class="pbody">${POLICY}</div><label class="ck"><input type="checkbox" id="tg" onchange="document.getElementById('tgb').disabled=!this.checked"> قرأت سياسة الخصوصية وشروط الاستخدام وأوافق عليها</label><p><button class="b" id="tgb" disabled onclick="acceptTerms()">أوافق وأتابع</button> <button class="b g" onclick="out()">خروج</button></p></div>`}
+async function acceptTerms(){S.busy=1;r();const q=await sb.rpc('accept_terms',{v:TERMS_V});if(q.error){S.busy=0;r();return alert('تعذر حفظ الموافقة: '+q.error.message)}refresh()}
 r();refresh();if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 
 (function(){
